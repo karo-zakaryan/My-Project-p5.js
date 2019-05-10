@@ -1,38 +1,20 @@
-// const express = require("express");
-// const app = express();
+const fs = require("fs");
+const testObj = require("./fstests");
+const { draw, setup } = require("./script");
 
-// app.get("/", (req, res) => {
-//     res.send("<h1>Hello World</h1>");
-// });
+/**
+ * Ex. 15
+ */
+setup();
+draw();
 
-// app.get("/name/:name", (req, res) => {
-//     const name = req.params.name;
+/**
+ * Ex. 25
+ */
+const main = () => {
+  const jsonObj = JSON.stringify(testObj);
 
-//     res.send(`<h1>Hello ${name}</h1>`)
-// });
-
-// app.get("/google/:search", (req, res) => {
-//     const searchQuery = req.params.search;
-
-//     res.redirect(404,`https://www.google.com/search?q=${searchQuery}`);
-// });
-
-// app.listen(3001, () => {
-//     console.log("Server is running on port 3001");
-// });
-
-const fs = require('fs');
-
-const dummyText = "Apple yep";
-
-function main() {
-    fs.writeFileSync("dummytext.txt", dummyText);
-    const text = fs.readFileSync("dummytext.txt").toString();
-    console.log(dummyText === text);
-    console.log(text);
-
-    fs.writeFileSync("undummytext.txt", text.replace("Apple", "Microsoft"));
-
-}
+  fs.writeFileSync("obj.json", jsonObj);
+};
 
 main();

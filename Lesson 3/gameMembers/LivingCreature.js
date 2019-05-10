@@ -1,11 +1,9 @@
-"use strict";
-
-class Grass {
+class LivingCreature {
   constructor(x, y, index) {
     this.x = x;
     this.y = y;
-    this.index = index;
     this.multiply = 0;
+    this.index = index;
     this.directions = [
       [this.x - 1, this.y - 1],
       [this.x, this.y - 1],
@@ -19,10 +17,12 @@ class Grass {
   }
 
   chooseCell(character) {
-    let found = [];
-    for (let i in this.directions) {
-      let x = this.directions[i][0];
-      let y = this.directions[i][1];
+    const found = [];
+
+    for (const i in this.directions) {
+      const x = this.directions[i][0];
+      const y = this.directions[i][1];
+
       if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
         if (matrix[y][x] == character) {
           found.push(this.directions[i]);
@@ -31,15 +31,6 @@ class Grass {
     }
     return found;
   }
-
-  mul() {
-    this.multiply++;
-    let newCell = random(this.chooseCell(0));
-    if (this.multiply > 4 && newCell) {
-      let newGrass = new Grass(newCell[0], newCell[1], this.index);
-      grassArr.push(newGrass);
-      matrix[newCell[1]][newCell[0]] = 1;
-      this.multiply = 0;
-    }
-  }
 }
+
+module.exports = LivingCreature;

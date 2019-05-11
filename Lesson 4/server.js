@@ -4,7 +4,7 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const messages = [];
 
-app.use(express.static("."));
+app.use(express.static("./client/public"));
 app.get('/', (req, res) => {
     res.redirect('index.html');
 });

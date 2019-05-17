@@ -1,5 +1,6 @@
 const LivingCreature = require("../LivingCreature");
-const { bearArr } = require("../../data/memberArrays");
+const { bearArr, grassEaterArr } = require("../../data/memberArrays");
+const { random } = require("../helperFunctions/helperFunctions");
 
 class Bear extends LivingCreature {
   constructor(x, y, index) {
@@ -36,21 +37,20 @@ class Bear extends LivingCreature {
       [this.x - 2, this.y],
       [this.x - 2, this.y - 1]
     ];
-  };
+  }
 
   chooseCell(character) {
     this.getNewCoordinates();
 
     return super.chooseCell(character);
-  };
+  }
 
   move() {
     const hole = this.chooseCell(5);
     const newCellEmpty = this.chooseCell(0);
     const newCellGrass = this.chooseCell(1);
     const myArr = [...hole, ...newCellEmpty, ...newCellGrass];
-    const cell = myArr;
-    // const cell = random(myArr);
+    const cell = random(myArr);
 
     if (cell) {
       const x = cell[0];
@@ -79,11 +79,10 @@ class Bear extends LivingCreature {
           break;
       }
     }
-  };
+  }
 
   eat() {
-    const grassEaterCell = this.chooseCell(2);
-    // const grassEaterCell = random(this.chooseCell(2));
+    const grassEaterCell = random(this.chooseCell(2));
 
     if (grassEaterCell) {
       matrix[grassEaterCell[1]][grassEaterCell[0]] = 3;
@@ -109,7 +108,7 @@ class Bear extends LivingCreature {
     if (this.energy <= -60) {
       this.die();
     }
-  };
+  }
 
   die() {
     for (const i in bearArr) {
@@ -119,7 +118,7 @@ class Bear extends LivingCreature {
         break;
       }
     }
-  };
+  }
 }
 
 module.exports = Bear;

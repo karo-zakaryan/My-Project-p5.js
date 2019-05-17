@@ -1,15 +1,15 @@
-const socket = io()
+const socket = io();
 const side = 13;
 
 function setup() {
   noStroke();
   frameRate(8);
-  createCanvas(500);
+  createCanvas(500, 500);
 }
 
 socket.on("send matrix", drawExecuter);
 
-const drawExecuter = matrix => {
+function drawExecuter(matrix) {
   const mxLength = matrix.length;
 
   for (let y = 0; y < mxLength; y++) {
@@ -44,4 +44,4 @@ const drawExecuter = matrix => {
       }
     }
   }
-};
+}

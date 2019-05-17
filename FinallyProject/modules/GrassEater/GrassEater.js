@@ -1,5 +1,6 @@
 const LivingCreature = require("../LivingCreature");
-const { grassEaterArr } = require("../../data/memberArrays");
+const { grassEaterArr, grassArr } = require("../../data/memberArrays");
+const { random } = require("../helperFunctions/helperFunctions");
 
 class GrassEater extends LivingCreature {
   constructor(x, y, index) {
@@ -19,17 +20,16 @@ class GrassEater extends LivingCreature {
       [this.x, this.y + 1],
       [this.x + 1, this.y + 1]
     ];
-  };
+  }
 
   chooseCell(character) {
     this.getNewCoordinates();
 
     return super.chooseCell(character);
-  };
+  }
 
   move() {
-    const newCell = this.chooseCell(0);
-    // const newCell = random(this.chooseCell(0));
+    const newCell = random(this.chooseCell(0));
     this.multiply++;
 
     if (newCell) {
@@ -41,11 +41,10 @@ class GrassEater extends LivingCreature {
       this.y = newCell[1];
       this.energy--;
     }
-  };
+  }
 
   eat() {
-    const grassCell = this.chooseCell(1);
-    // const grassCell = random(this.chooseCell(1));
+    const grassCell = random(this.chooseCell(1));
     this.multiply++;
 
     if (grassCell) {
@@ -73,11 +72,10 @@ class GrassEater extends LivingCreature {
     } else if (this.energy <= -10) {
       this.die();
     }
-  };
+  }
 
   mul() {
-    const newCell = this.chooseCell(0);
-    // const newCell = random(this.chooseCell(0));
+    const newCell = random(this.chooseCell(0));
 
     if (newCell) {
       const newGrassEater = new GrassEater(newCell[0], newCell[1], this.index);
@@ -85,7 +83,7 @@ class GrassEater extends LivingCreature {
       matrix[newCell[1]][newCell[0]] = 2;
       grassEaterArr.push(newGrassEater);
     }
-  };
+  }
 
   die() {
     for (const i in grassEaterArr) {
@@ -95,7 +93,7 @@ class GrassEater extends LivingCreature {
         break;
       }
     }
-  };
+  }
 }
 
 module.exports = GrassEater;

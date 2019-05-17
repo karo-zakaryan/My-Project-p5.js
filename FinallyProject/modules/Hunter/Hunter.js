@@ -1,5 +1,10 @@
 const LivingCreature = require("../LivingCreature");
-const { hunterArr } = require("../../data/memberArrays");
+const {
+  hunterArr,
+  grassEaterArr,
+  bearArr
+} = require("../../data/memberArrays");
+const { random } = require("../helperFunctions/helperFunctions");
 
 class Hunter extends LivingCreature {
   constructor(x, y, index) {
@@ -35,21 +40,20 @@ class Hunter extends LivingCreature {
       [this.x - 2, this.y],
       [this.x - 2, this.y - 1]
     ];
-  };
+  }
 
   chooseCell(character) {
     this.getNewCoordinates();
 
     return super.chooseCell(character);
-  };
+  }
 
   move() {
     const hole = this.chooseCell(5);
     const newCellEmpty = this.chooseCell(0);
     const newCellGrass = this.chooseCell(1);
     const myArr = [...hole, ...newCellEmpty, ...newCellGrass];
-    // const cell = random(myArr);
-    const cell = myArr;
+    const cell = random(myArr);
 
     if (cell) {
       const x = cell[0];
@@ -77,13 +81,11 @@ class Hunter extends LivingCreature {
           break;
       }
     }
-  };
+  }
 
   beat() {
-    const newCellHerbivore = this.chooseCell(2);
-    // const newCellHerbivore = random(this.chooseCell(2));
-    const newCellBear = this.chooseCell(3);
-    // const newCellBear = random(this.chooseCell(3));
+    const newCellHerbivore = random(this.chooseCell(2));
+    const newCellBear = random(this.chooseCell(3));
 
     if (newCellHerbivore) {
       matrix[newCellHerbivore[1]][newCellHerbivore[0]] = 4;
@@ -119,7 +121,7 @@ class Hunter extends LivingCreature {
     } else {
       this.move();
     }
-  };
+  }
 
   die() {
     for (let i in hunterArr) {
@@ -135,7 +137,7 @@ class Hunter extends LivingCreature {
         }
       }
     }
-  };
+  }
 }
 
 module.exports = Hunter;

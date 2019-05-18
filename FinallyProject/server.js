@@ -3,24 +3,23 @@ const app = express();
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
 
-app.use(express.static("./public"));
-app.get("/", (req, res) => {
-  res.redirect("index.html");
-});
-
-server.listen(8000, () => {
-  console.log("Server listen to 8000 port");
-});
-
 /** Arrays */
 const charNumArr = require("./data/charNumArr");
+
+/** Global variables **/
+matrix = [];
+bornGrasses = 0;
+bornGrassEaters = 0;
+bornBears = 0;
+bornHunters = 0;
+bornHoles = 0;
+
 const {
   grassArr,
   grassEaterArr,
   hunterArr,
-  bearArr
+  bearArr,
 } = require("./data/memberArrays");
-matrix = [];
 
 /** helperFunctions */
 const { random } = require("./modules/helperFunctions/helperFunctions");
@@ -58,16 +57,19 @@ const matrixCreator = (n, m) => {
 
         limitBear++;
         bearArr.push(bear);
+        bornBears++;
         matrix[y][x] = randNumForMatrix;
       } else if (randNumForMatrix == 4 && limitHunter < 3) {
         const hunter = new Hunter(x, y, 1);
 
         limitHunter++;
         hunterArr.push(hunter);
+        bornHunters++;
         matrix[y][x] = randNumForMatrix;
       } else if (randNumForMatrix == 5 && limitHole < 3) {
         limitHole++;
         matrix[y][x] = randNumForMatrix;
+        bornHoles++;
       } else {
         matrix[y][x] = 0;
       }
@@ -87,13 +89,32 @@ const game = () => {
 
   for (const i in grassEaterArr) {
     grassEaterArr[i].eat();
+
   }
 
   for (const i in bearArr) {
     bearArr[i].eat();
   }
 
-  io.sockets.emit("send matrix", matrix);
+  const data = {
+    matrix,
+    bornGrasses,
+    bornGrassEaters,
+    bornBears,
+    bornHunters,
+    bornHoles
+  };
+
+  io.sockets.emit("send matrix", data);
 };
 
 setInterval(game, 400);
+
+app.use(express.static("./public"));
+app.get("/", (req, res) => {
+  res.redirect("index.html");
+});
+
+server.listen(8000, () => {
+  console.log("Server listen to 8000 port");
+});

@@ -108,7 +108,7 @@ class Hunter extends LivingCreature {
       matrix[newCellBear[1]][newCellBear[0]] = 4;
       matrix[this.y][this.x] = 0;
 
-      for (let i in bearArr) {
+      for (const i in bearArr) {
         if (bearArr[i].x == newCellBear[0] && bearArr[i].y == newCellBear[1]) {
           bearArr.splice(i, 1);
           break;

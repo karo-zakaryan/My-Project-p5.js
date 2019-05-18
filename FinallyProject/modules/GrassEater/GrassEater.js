@@ -82,6 +82,7 @@ class GrassEater extends LivingCreature {
 
       matrix[newCell[1]][newCell[0]] = 2;
       grassEaterArr.push(newGrassEater);
+      bornGrassEaters++;
     }
   }
 

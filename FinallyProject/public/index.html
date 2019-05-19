@@ -12,86 +12,91 @@
   </head>
 
   <body>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <h1>Ծրագրավորում III Երևան</h1>
-        </tr>
-        <tr>
-          <h1>Կարո Զաքարյան</h1>
-        </tr>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Գույն</th>
-          <th scope="col">Նկարագրություն</th>
-          <th scope="col">Ծնվել է</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td
-            class="memberCol"
-            scope="row"
-            style="background-color:green;"
-          ></td>
-          <td>
-            Կանաչը խոտն է, որը բազմանում է N ցիկլը մեկ,մահանում է երբ նրան
-            ուտում է խոտակերը, կամ այրում է կրակը, կամ նրան կոխկրտում է գիշատիչը
-          </td>
-          <td id="garssCount"></td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td
-            class="memberCol"
-            scope="row"
-            style="background-color:orange;"
-          ></td>
-          <td>
-            Դեղինը խոտակերն է, որը բազմանում է N հատ խոտ ուտելուց հետո և
-            մահանում է N հատ չուտելուց հետո, կամ երբ նրան ուտում է գիշատիչը, կամ
-            երբ նրան այրում է կրակը:
-          </td>
-          <td id="garssEaterCount"></td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td class="memberCol" scope="row" style="background-color:red;"></td>
-          <td>
-            Կարմիրը որսորդն է,սպանում է արջերին և փնտրում է նրանց թաքցրած գանձը,
-            սակայն երբ կանգնում է ռադիոակտիվ փոսի վրա մահանում է։
-          </td>
-          <td id="hunterCount"></td>
-        </tr>
-        <tr>
-          <th scope="row">4</th>
-          <td
-            class="memberCol"
-            scope="row"
-            style="background-color:black;"
-          ></td>
-          <td>
-            Սևը արջն է, որը մահանում է N հատ խոտակեր չուտելուց հետո, կամ երբ
-            նրան սպանում է որսորդը:
-          </td>
-          <td id="bearCount"></td>
-        </tr>
-        <tr>
-          <th scope="row">5</th>
-          <td
-            class="memberCol"
-            scope="row"
-            style="background-color:white;"
-          ></td>
-          <td>
-            Սպիտակը ռադիոակտիվ փոսն է, որը արջերի լարած ծուղակն է մարդկանց
-            համար: Վերջիններս անզգուշություն դրսևորելու դեպքում մահանում են
-            ռադիոակտիվ ճառագայթներից։
-          </td>
-          <td id="holeCount"></td>
-        </tr>
-      </tbody>
-    </table>
+    <main>
+      <div>
+        <table class="table">
+          <thead>
+            <tr>
+              <h1>Ծրագրավորում III Երևան</h1>
+            </tr>
+            <tr>
+              <h1>Կարո Զաքարյան</h1>
+            </tr>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Գույն</th>
+              <th scope="col">Նկարագրություն</th>
+              <th scope="col">Ծնվել է</th>
+              <th scope="col">Մահացել է</th>
+              <th scope="col">Բնական աճ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td class="memberCol" scope="row" id="grass"></td>
+              <td>
+                Խոտն է, որը բազմանում է N ցիկլը մեկ,մահանում է երբ նրան ուտում է
+                խոտակերը, կամ այրում է կրակը, կամ նրան կոխկրտում է գիշատիչը
+              </td>
+              <td id="bornGrasses"></td>
+              <td id="diedGrasses"></td>
+              <td id="countGrasses"></td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td class="memberCol" scope="row" id="grass-eater"></td>
+              <td>
+                Խոտակերն է, որը բազմանում է N հատ խոտ ուտելուց հետո և մահանում է
+                N հատ չուտելուց հետո, կամ երբ նրան ուտում է գիշատիչը, կամ երբ
+                նրան այրում է կրակը:
+              </td>
+              <td id="bornGrassEaters"></td>
+              <td id="diedGrassEaters"></td>
+              <td id="countGrassEaters"></td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td class="memberCol" scope="row" id="hunter"></td>
+              <td>
+                Որսորդն է,սպանում է արջերին և փնտրում է նրանց թաքցրած գանձը,
+                սակայն երբ կանգնում է ռադիոակտիվ փոսի վրա մահանում է։
+              </td>
+              <td id="bornHunters"></td>
+              <td id="diedHunters"></td>
+              <td id="countHunters"></td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td class="memberCol" scope="row" id="bear"></td>
+              <td>
+                Արջն է, որը մահանում է N հատ խոտակեր չուտելուց հետո, կամ երբ
+                նրան սպանում է որսորդը:
+              </td>
+              <td id="bornBears"></td>
+              <td id="diedBears"></td>
+              <td id="countBears"></td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td class="memberCol" scope="row" id="hole"></td>
+              <td>
+                Ռադիոակտիվ փոսն է, որը արջերի լարած ծուղակն է մարդկանց համար:
+                Վերջիններս անզգուշություն դրսևորելու դեպքում մահանում են
+                ռադիոակտիվ ճառագայթներից։
+              </td>
+              <td id="bornHoles"></td>
+              <td id="diedHoles"></td>
+              <td id="countHoles"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="season-block">
+        <button id="season-btn">Click and change season ! ! !</button>
+        <p id="season">Summer</p>
+      </div>
+    </main>
   </body>
 </html>

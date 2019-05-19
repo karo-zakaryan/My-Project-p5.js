@@ -68,6 +68,7 @@ class GrassEater extends LivingCreature {
 
     if (this.energy >= 20) {
       this.mul();
+
       this.energy = 0;
     } else if (this.energy <= -10) {
       this.die();
@@ -82,7 +83,6 @@ class GrassEater extends LivingCreature {
 
       matrix[newCell[1]][newCell[0]] = 2;
       grassEaterArr.push(newGrassEater);
-      bornGrassEaters++;
     }
   }
 

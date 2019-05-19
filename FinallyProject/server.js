@@ -18,7 +18,7 @@ const {
   grassArr,
   grassEaterArr,
   hunterArr,
-  bearArr,
+  bearArr
 } = require("./data/memberArrays");
 
 /** helperFunctions */
@@ -79,31 +79,56 @@ const matrixCreator = (n, m) => {
 matrixCreator(40, 40);
 
 const game = () => {
+  const diedGrasses = bornGrasses - grassArr.length;
+  const diedGrassEaters = bornGrassEaters - grassEaterArr.length;
+  const diedHunters = bornHunters - hunterArr.length;
+  const diedBears = bornBears - bearArr.length;
+  const diedHoles = 0;
+
+  const data = {
+    matrix,
+    bornMembers: {
+      bornGrasses,
+      bornGrassEaters,
+      bornBears,
+      bornHunters,
+      bornHoles
+    },
+    diedMembers: {
+      diedGrasses,
+      diedGrassEaters,
+      diedHunters,
+      diedBears,
+      diedHoles
+    },
+    countMembers: {
+      countGrasses: grassArr.length,
+      countGrassEaters: grassEaterArr.length,
+      countBears: bearArr.length,
+      countHunters: hunterArr.length,
+      countHoles: bornHoles
+    }
+  };
+
   for (const i in hunterArr) {
     hunterArr[i].beat();
   }
 
   for (const i in grassArr) {
-    grassArr[i].mul();
+    if (bornGrasses - diedGrasses) {
+      grassArr[i].mul();
+      bornGrasses++;
+    }
   }
 
   for (const i in grassEaterArr) {
     grassEaterArr[i].eat();
-
+    bornGrassEaters++;
   }
 
   for (const i in bearArr) {
     bearArr[i].eat();
   }
-
-  const data = {
-    matrix,
-    bornGrasses,
-    bornGrassEaters,
-    bornBears,
-    bornHunters,
-    bornHoles
-  };
 
   io.sockets.emit("send matrix", data);
 };
